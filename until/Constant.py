@@ -8,11 +8,7 @@ class Constant(object):
 
     def open_url(self,driver,url):
         driver.get(url)
-
-
-    def close_current_window(self,driver):
-        driver.close()
-
+ 
 
     def Read_file_init(self):
         config = ConfigParser.ConfigParser()
