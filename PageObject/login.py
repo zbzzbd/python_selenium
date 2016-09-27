@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 from until.Constant import  Constant
-
-class loginPageObject(object):
+from base import GG_BasePage
+class loginPageObject(GG_BasePage):
 
     def __init__(self):
         self.url='http://sso.ggang.cn/SSoOperater/SSoLoginIndex?url=http://www.ggang.cn/'
@@ -25,6 +25,6 @@ class loginPageObject(object):
         password =Constant().according_type_find_element(driver,str(passw_spcator),str(passw_value))
         password.send_keys(passw)
 
-        Constant().according_type_find_element(driver,str(logbutn_specator),str(logn_value)).click()
+        #Constant().according_type_find_element(driver,str(logbutn_specator),str(logn_value)).click()
 
 
