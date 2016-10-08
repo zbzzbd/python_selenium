@@ -2,13 +2,9 @@
 import ConfigParser
 
 """
-页面上常用的方法
+常用的方法
 """
 class Constant(object):
-
-    def open_url(self,driver,url):
-        driver.get(url)
- 
 
     def Read_file_init(self):
         config = ConfigParser.ConfigParser()
