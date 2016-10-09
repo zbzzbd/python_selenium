@@ -29,5 +29,5 @@ if __name__ == "__main__":
     fp.close()
 
     #查找最新报告并邮件发送
-    new_report=new_report(ReportDir)
-    send_mail(new_report)
+    #new_report=new_report(ReportDir)
+    #send_mail(new_report)

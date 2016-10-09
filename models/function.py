@@ -25,11 +25,11 @@ def insert_img(driver,filename):
 
 
 def send_mail(file_new):
+
     f = open(file_new, 'rb')
-    mail_body = f.read()
+    mail_body = f.read()# 文本内容
     f.close()
-    msg = MIMEText(mail_body, 'html', 'utf-8')
-    msg['Subject'] = Header("钢钢网自动化测试报告", "utf-8")
+
     # 发送邮件服务器
     smtpserver = "smtp.exmail.qq.com"
     # 发送邮箱用户名/密码
@@ -40,12 +40,25 @@ def send_mail(file_new):
     # 接收邮箱
     receiver = 'zhangbingzhen@ggang.cn'
 
+    msg = MIMEText(mail_body, 'html', 'utf-8') #第一个参数：文本内容，第二个参数：文本格式，第三个参数：编码格式
+    msg['Subject'] = Header("钢钢网自动化测试报告", "utf-8")
+    msg['From'] = Header(sender,'utf-8')
+    msg['To'] = Header(receiver,"utf-8")
+
+
+
     smtp = smtplib.SMTP()
-    smtp.connect(smtpserver)
-    smtp.login(user, password)
-    smtp.sendmail(sender, receiver, msg.as_string())
-    smtp.quit()
-    print "email has send out!"
+
+    try:
+        smtp.connect(smtpserver)
+        smtp.login(user, password)
+        smtp.sendmail(sender, receiver, msg.as_string())
+        print "email has send out!"
+    except smtplib.SMTPException:
+        print "Error 无法发送邮件"
+    finally:
+        smtp.quit()
+
 
 
 def new_report(restreport):
