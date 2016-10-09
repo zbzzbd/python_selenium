@@ -189,8 +189,8 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>测试报告</h1>
-<p class='attribute'><strong>Start Time:</strong> 2016-10-08 16:46:43</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:11.051000</p>
+<p class='attribute'><strong>Start Time:</strong> 2016-10-09 14:35:49</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:10.820000</p>
 <p class='attribute'><strong>Status:</strong> Error 2</p>
 
 <p class='description'>用例执行情况</p>
@@ -249,9 +249,13 @@ ft1.1: [('username', 'xpath&gt;//input[@placeholder="\xe8\xaf\xb7\xe8\xbe\x93\xe
 Traceback (most recent call last):
   File "D:\code\dx_py_auto_selenium\testCase\test_login.py", line 16, in test_login
     loginPageObject().login_ganggang(self.driver,'13611873856','123456')
-  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 35, in login_ganggang
-    Constant().open_url(driver,self.url)
-AttributeError: 'Constant' object has no attribute 'open_url'
+  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 34, in login_ganggang
+    self.open(self.url)
+  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 14, in open
+    self._open(url)
+  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 17, in _open
+    self.driver.get(url)
+AttributeError: 'loginPageObject' object has no attribute 'driver'
 
 
         </pre>
@@ -280,9 +284,13 @@ ft1.2: [('username', 'xpath&gt;//input[@placeholder="\xe8\xaf\xb7\xe8\xbe\x93\xe
 Traceback (most recent call last):
   File "D:\code\dx_py_auto_selenium\testCase\test_login.py", line 18, in test_login2
     loginPageObject().login_ganggang(self.driver,'13918739640', '123456')
-  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 35, in login_ganggang
-    Constant().open_url(driver,self.url)
-AttributeError: 'Constant' object has no attribute 'open_url'
+  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 34, in login_ganggang
+    self.open(self.url)
+  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 14, in open
+    self._open(url)
+  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 17, in _open
+    self.driver.get(url)
+AttributeError: 'loginPageObject' object has no attribute 'driver'
 
 
         </pre>

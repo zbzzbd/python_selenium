@@ -6,14 +6,11 @@ import ConfigParser
 """
 class Constant(object):
 
-    def Read_file_init(self):
+    def Read_file_init(self,item):
         config = ConfigParser.ConfigParser()
         config.readfp(open('D:\\code\\dx_py_auto_selenium\\element.ini'))
-        print config.items('login')
-        username=config.get('login','username')
-        passw =config.get('login','passw')
-        logtn =config.get('login','submit')
-        return username,passw,logtn
+        #print config.items(item)
+        return dict(config.items(item))
 
     def pase_element_find_method(self,str):
         list=str.split('>')
@@ -22,5 +19,5 @@ class Constant(object):
         return spetator,value
 
 if __name__ =="__main__":
-    sep,value=Constant().pase_element_find_method("xpath>//input")
-    print sep,value
+    item=Constant().Read_file_init('login')
+    print item.get('username')

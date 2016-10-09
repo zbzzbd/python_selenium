@@ -8,46 +8,71 @@ from base import GG_BasePage
 """
 class loginPageObject(GG_BasePage):
 
-    def __init__(self):
-        self.url='http://sso.ggang.cn/SSoOperater/SSoLoginIndex?url=http://www.ggang.cn/'
-        # 读取配置文件
-        self.username ,self.pasword,self.logtn= Constant().Read_file_init()
+    def __init__(self,driver,baseurl,module_item):
+        self.base_url='http://sso.ggang.cn/SSoOperater/SSoLoginIndex?url=http://www.ggang.cn/'+baseurl
+        self.driver=driver
+        self.get_elements_position(module_item)
+        self.open(self.base_url)
+
+    # 获取页面定位
+    def get_elements_position(self,module_item):
+
+        item =self.Read_elements_item(module_item)
+        self.username = item.get('username')
+        self.pasword = item.get('passw')
+        self.logtn = item.get('submit')
+        self.qiehuan = item.get('company_login_li')
+        self.nameAdmin=item.get('company_login_username')
+        self.passAdmin=item.get('company_login_password')
+
 
     #输入用户名
-    def login_username(self,username):
-        find_type, value= Constant().pase_element_find_method(self.username)
-        self.according_type_find_element(self.driver,str(find_type),str(value)).send_keys(username)
+    def type_username(self,username):
+        find_type,value=self.get_type_locator(self.username)
+        self.according_type_find_element(self.driver,find_type,value).send_keys(username)
+    #输入企业用户名
+    def type_company_username(self,username):
+        find_type ,value =self.get_type_locator(self.nameAdmin)
+        self.according_type_find_element(self.driver,find_type,value).send_keys(username)
 
     #输入密码
-    def login_password(self,password):
-        find_type, value = Constant().pase_element_find_method(self.pasword)
+    def type_password(self,password):
+        find_type, value =self.get_type_locator(self.pasword)
+        self.according_type_find_element(self.driver, str(find_type), str(value)).send_keys(password)
+
+    #输入企业密码
+    def type_company_password(self,password):
+        find_type, value = self.get_type_locator(self.passAdmin)
         self.according_type_find_element(self.driver, str(find_type), str(value)).send_keys(password)
 
     #点击登录按钮
-    def login_submit(self):
-        find_type, value = Constant().pase_element_find_method(self.logtn)
+    def click_submit(self):
+        find_type, value = self.get_type_locator(self.logtn)
         self.according_type_find_element(self.driver, str(find_type), str(value)).click()
 
 
+    #点击切换登录
+    def click_switch_login(self):
+        find_type,value = self.get_type_locator(self.qiehuan)
+        self.according_type_find_element(self.driver,str(find_type),str(value)).click()
 
-    def login_ganggang(self,driver,username,passw):
+    #判断是否登录成功
+    def assert_successd(self):
+        find_type, value = self.get_type_locator(self.qiehuan)
+        self.according_type_find_element(self.driver, str(find_type), str(value))
 
-        Constant().open_url(driver,self.url)
+    #登录
+    def login_ganggang(self,username,passw):
+        self.type_username(username)
+        self.type_password(passw)
+        self.click_submit()
 
-        #获取定位方式及定位值
-        username_specator, username_value = Constant().pase_element_find_method(username1)
-        passw_spcator, passw_value = Constant().pase_element_find_method(passw2)
-        logbutn_specator,logn_value= Constant().pase_element_find_method(logbutn)
-
-        # 需要传入的值，定位方式，定位值，输入内容，输入值
-        #输入用户名
-        phone =self.according_type_find_element(driver,str(username_specator),str(username_value))
-        phone.send_keys(username)
-        #输入密码
-        password =self.according_type_find_element(driver,str(passw_spcator),str(passw_value))
-        password.send_keys(passw)
-
-        #Constant().according_type_find_element(driver,str(logbutn_specator),str(logn_value)).click()
+    #企业登录
+    def login_company_ganggang(self,username,passw):
+        self.click_switch_login()
+        self.type_company_username(username)
+        self.type_company_password(passw)
+        self.click_submit()
 
 
 
