@@ -1,8 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from selenium import  webdriver
 from  PageObject.login import loginPageObject
-from  until.Constant import Constant
 import unittest
 from models.myuntil import GangGangTestObject
 
@@ -13,8 +11,14 @@ class Testlogin(GangGangTestObject):
     """
 
     def test_login(self):
+
         """钢钢网登录测试"""
-        loginPageObject(self.driver, '','login').login_company_ganggang('13611873856','123456')
+        p=loginPageObject(self.driver, '','login')
+        p.login_company_ganggang('13611873856','123456')
+        text=p.get_logout_value()
+        self.assertEqual(text,"退出")
+
+        self.assertEqual()
     def test_login2(self):
         loginPageObject(self.driver, '','login').login_ganggang('13918739640', '123456')
 

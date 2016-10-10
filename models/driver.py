@@ -11,4 +11,5 @@ def browser():
 if __name__ =="__main__":
     dr =browser()
     dr.get("http://www.baidu.com")
+    dr.find_element_by_id('index').get_attribute()
     dr.quit()
