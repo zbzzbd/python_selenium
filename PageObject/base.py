@@ -2,6 +2,9 @@
 """
 页面基类，用于所有页面的继承类
 """
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import  expected_conditions as EC
+
 from until.Constant import *
 class GG_BasePage(object):
 
@@ -33,3 +36,9 @@ class GG_BasePage(object):
             return driver.find_element_by_xpath(value)
         if str == 'css':
             return driver.find_element_by_class_name(value)
+        if str == 'id':
+            return driver.find_element_by_id(value)
+
+    def wait_until_element(self,driver,locator):
+        element= WebDriverWait(driver,5,0.5).until(EC.presence_of_element_located(locator))
+        return element

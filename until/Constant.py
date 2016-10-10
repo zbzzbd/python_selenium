@@ -20,4 +20,4 @@ class Constant(object):
 
 if __name__ =="__main__":
     item=Constant().Read_file_init('login')
-    print item.get('username')
+    print item.get('index_logout')

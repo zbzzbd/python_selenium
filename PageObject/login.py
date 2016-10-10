@@ -3,6 +3,7 @@ from until.Constant import  Constant
 from base import GG_BasePage
 
 
+
 """
 本文件主要封装，页面的元素定位封装，登录方法的封装，检查点的封装
 """
@@ -24,6 +25,8 @@ class loginPageObject(GG_BasePage):
         self.qiehuan = item.get('company_login_li')
         self.nameAdmin=item.get('company_login_username')
         self.passAdmin=item.get('company_login_password')
+        self.logout=item.get('index_logout')
+        print self.logout
 
 
     #输入用户名
@@ -56,10 +59,12 @@ class loginPageObject(GG_BasePage):
         find_type,value = self.get_type_locator(self.qiehuan)
         self.according_type_find_element(self.driver,str(find_type),str(value)).click()
 
-    #判断是否登录成功
-    def assert_successd(self):
-        find_type, value = self.get_type_locator(self.qiehuan)
-        self.according_type_find_element(self.driver, str(find_type), str(value))
+    #获取退出按钮的属性
+    def get_logout_value(self):
+        find_type, value = self.get_type_locator(self.logout)
+        logbut=self.wait_until_element(self.driver,self.according_type_find_element(self.driver, str(find_type), str(value)))
+        text =logbut.get_attribute("value")
+        return text
 
     #登录
     def login_ganggang(self,username,passw):
