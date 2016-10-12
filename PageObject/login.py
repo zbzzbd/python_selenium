@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from until.Constant import  Constant
 from base import GG_BasePage
+import unittest
 
 
 
@@ -62,15 +63,30 @@ class loginPageObject(GG_BasePage):
     #获取退出按钮的属性
     def get_logout_value(self):
         find_type, value = self.get_type_locator(self.logout)
-        logbut=self.wait_until_element(self.driver,self.according_type_find_element(self.driver, str(find_type), str(value)))
+        logbut=self.wait_until_element(self.driver,self.according_type_switch_method(find_type,value))
         text =logbut.get_attribute("value")
         return text
+    #获取alter 信息
+    def get_alter_info(self):
+        return self.driver.switch_to_alert().text
+
+    #判断是否成功登录（是否包含退出）
+    def is_success_logined(self,text):
+        if isinstance(text,unicode):
+            assert text.encode("utf-8")=="退出"
+        else:
+            assert text=="退出"
+
+
+
 
     #登录
     def login_ganggang(self,username,passw):
         self.type_username(username)
         self.type_password(passw)
         self.click_submit()
+
+
 
     #企业登录
     def login_company_ganggang(self,username,passw):

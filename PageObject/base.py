@@ -4,6 +4,7 @@
 """
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import  expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 from until.Constant import *
 class GG_BasePage(object):
@@ -27,6 +28,22 @@ class GG_BasePage(object):
     def on_page(self):
         return self.driver.current_url ==self.base_url
 
+    def get_current_window(self):
+        return self.driver.current_window_handle
+
+    def get_all_handles(self):
+        return self.driver.window_handles
+
+    def switch_window(self):
+        current_window=self.get_current_window()
+        all_handles=self.get_all_handles()
+        for handle in all_handles:
+            if handle !=current_window:
+                self.driver.switch_to.window(handle)
+                print self.driver.title
+
+
+
     def get_type_locator(self, str):
         find_type, value = Constant().pase_element_find_method(str)
         return find_type,value
@@ -39,6 +56,22 @@ class GG_BasePage(object):
         if str == 'id':
             return driver.find_element_by_id(value)
 
+    def according_type_switch_method(self,str,value):
+        if str =='id':
+            return (By.ID,value)
+        if str =='xpath':
+            return (By.XPATH,value)
+        if str == 'css':
+            return (By.CLASS_NAME)
+        if str == 'name':
+            return (By.NAME)
+
+    #def find_element(self,*locator):
+    #    return self.driver.find_element(*locator)
+
     def wait_until_element(self,driver,locator):
-        element= WebDriverWait(driver,5,0.5).until(EC.presence_of_element_located(locator))
+        element= WebDriverWait(driver,15,0.5).until(EC.presence_of_element_located(locator))
         return element
+
+    def accept_alert(self):
+        self.driver.switch_to_alert().accept()

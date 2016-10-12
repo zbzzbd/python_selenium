@@ -16,12 +16,20 @@ class Testlogin(GangGangTestObject):
         p=loginPageObject(self.driver, '','login')
         p.login_company_ganggang('13611873856','123456')
         text=p.get_logout_value()
-        self.assertEqual(text,"退出")
+        if isinstance(text,unicode):
+            self.assertEqual(text.encode("utf-8"),"退出")
+        else:
+            self.assertEqual(text, "退出")
 
-        self.assertEqual()
+
     def test_login2(self):
-        loginPageObject(self.driver, '','login').login_ganggang('13918739640', '123456')
-
+        p=loginPageObject(self.driver, '','login')
+        p.login_ganggang('13918739640', '123456')
+        text=p.get_alter_info()
+        if isinstance(text,unicode):
+            self.assertEqual(text.encode("utf-8"),"请切换至企业会员登录")
+        else:
+            self.assertEqual(text,"请切换至企业会员登录")
 
 
 
