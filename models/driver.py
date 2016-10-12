@@ -10,6 +10,6 @@ def browser():
 
 if __name__ =="__main__":
     dr =browser()
-    dr.get("http://www.baidu.com")
-    dr.find_element_by_id('index').get_attribute()
+    dr.get("http://www.ggang.cn")
+    print dr.page_source.contains("操作指南")
     dr.quit()
