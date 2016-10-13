@@ -41,6 +41,9 @@ class GG_BasePage(object):
             if handle !=current_window:
                 self.driver.switch_to.window(handle)
                 print self.driver.title
+        return current_window
+    def switch_main_window(self,main_window):
+        self.driver.switch_to.window(main_window)
 
 
 
@@ -62,15 +65,17 @@ class GG_BasePage(object):
         if str =='xpath':
             return (By.XPATH,value)
         if str == 'css':
-            return (By.CLASS_NAME)
+            return (By.CLASS_NAME,value)
         if str == 'name':
-            return (By.NAME)
+            return (By.NAME,value)
+        if str == 'link_text':
+            return (By.LINK_TEXT,value)
 
     #def find_element(self,*locator):
     #    return self.driver.find_element(*locator)
 
     def wait_until_element(self,driver,locator):
-        element= WebDriverWait(driver,15,0.5).until(EC.presence_of_element_located(locator))
+        element= WebDriverWait(driver,60,0.5).until(EC.presence_of_element_located(locator))
         return element
 
     def accept_alert(self):

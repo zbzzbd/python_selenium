@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>测试报告</h1>
-<p class='attribute'><strong>Start Time:</strong> 2016-10-09 14:31:27</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:11.310000</p>
-<p class='attribute'><strong>Status:</strong> Error 2</p>
+<p class='attribute'><strong>Start Time:</strong> 2016-10-13 17:30:01</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:52.809000</p>
+<p class='attribute'><strong>Status:</strong> Pass 5</p>
 
 <p class='description'>用例执行情况</p>
 </div>
@@ -221,41 +221,32 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='errorClass'>
-    <td>test_login.Testlogin</td>
-    <td>2</td>
+<tr class='passClass'>
+    <td>test_index.TestIndex</td>
+    <td>3</td>
+    <td>3</td>
     <td>0</td>
     <td>0</td>
-    <td>2</td>
-    <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
+    <td><a href="javascript:showClassDetail('c1',3)">Detail</a></td>
 </tr>
 
-<tr id='ft1.1' class='none'>
-    <td class='errorCase'><div class='testcase'>test_login: 钢钢网登录测试</div></td>
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_apply_ticket: 申请钢票贷</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
-        error</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
 
-    <div id='div_ft1.1' class="popup_window">
+    <div id='div_pt1.1' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-ft1.1: [('username', 'xpath&gt;//input[@placeholder="\xe8\xaf\xb7\xe8\xbe\x93\xe5\x85\xa5\xe6\x89\x8b\xe6\x9c\xba\xe5\x8f\xb7"]'), ('passw', 'xpath&gt;//input[@placeholder="\xe5\xaf\x86\xe7\xa0\x81"]'), ('submit', 'css&gt;logBtn')]
-Traceback (most recent call last):
-  File "D:\code\dx_py_auto_selenium\testCase\test_login.py", line 16, in test_login
-    loginPageObject().login_ganggang(self.driver,'13611873856','123456')
-  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 34, in login_ganggang
-    self.open()
-  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 14, in open
-    self._open(self.url)
-  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 17, in _open
-    self.url =self.base_url+url
-AttributeError: 'loginPageObject' object has no attribute 'base_url'
+pt1.1: id&gt;btnLogOut
+钢钢网-大象钢票,解决流动资金不足,利率低,操作简便,安全性高
 
 
         </pre>
@@ -265,32 +256,108 @@ AttributeError: 'loginPageObject' object has no attribute 'base_url'
     </td>
 </tr>
 
-<tr id='ft1.2' class='none'>
-    <td class='errorCase'><div class='testcase'>test_login2</div></td>
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_into_mycenter: 进入个人中心测试</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
-        error</a>
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.2')" >
+        pass</a>
 
-    <div id='div_ft1.2' class="popup_window">
+    <div id='div_pt1.2' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.2').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-ft1.2: [('username', 'xpath&gt;//input[@placeholder="\xe8\xaf\xb7\xe8\xbe\x93\xe5\x85\xa5\xe6\x89\x8b\xe6\x9c\xba\xe5\x8f\xb7"]'), ('passw', 'xpath&gt;//input[@placeholder="\xe5\xaf\x86\xe7\xa0\x81"]'), ('submit', 'css&gt;logBtn')]
-Traceback (most recent call last):
-  File "D:\code\dx_py_auto_selenium\testCase\test_login.py", line 18, in test_login2
-    loginPageObject().login_ganggang(self.driver,'13918739640', '123456')
-  File "D:\code\dx_py_auto_selenium\PageObject\login.py", line 34, in login_ganggang
-    self.open()
-  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 14, in open
-    self._open(self.url)
-  File "D:\code\dx_py_auto_selenium\PageObject\base.py", line 17, in _open
-    self.url =self.base_url+url
-AttributeError: 'loginPageObject' object has no attribute 'base_url'
+pt1.2: id&gt;btnLogOut
+钢钢网-会员中心
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_spot_goods: 首页去找货测试</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.3')" >
+        pass</a>
+
+    <div id='div_pt1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.3: id&gt;btnLogOut
+钢钢网-四方现货,以最快最便捷的方式找到你所需要的货物
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='passClass'>
+    <td>test_login.Testlogin</td>
+    <td>2</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',2)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login: 钢钢网登录测试</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: id&gt;btnLogOut
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login2</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.2')" >
+        pass</a>
+
+    <div id='div_pt2.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.2: id&gt;btnLogOut
 
 
         </pre>
@@ -302,10 +369,10 @@ AttributeError: 'loginPageObject' object has no attribute 'base_url'
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>2</td>
+    <td>5</td>
+    <td>5</td>
     <td>0</td>
     <td>0</td>
-    <td>2</td>
     <td>&nbsp;</td>
 </tr>
 </table>
