@@ -31,5 +31,5 @@ class Constant(object):
 
 if __name__ =="__main__":
     item=Constant().Read_file_init('index')
-    print item.get('spot_goods')
-    print Constant().Read_file_config('accout').get('login_user')
+    for i in range(1,6):
+        print item.get("index_newfishs"+str(i))

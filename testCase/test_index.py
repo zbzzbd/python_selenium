@@ -11,7 +11,7 @@ class TestIndex(GangGangTestObject):
 
         """首页去找货测试"""
         #1.登录并成功进入首页
-        common_public_Gang().login_succesd(self.driver,'','login')
+        common_public_Gang().login_succesd(self.driver)
         #3.点击去找货
         index_pj=IndexPageObject(self.driver,'index')
         index_pj.click_spotGood_button()
@@ -21,19 +21,31 @@ class TestIndex(GangGangTestObject):
     def test_apply_ticket(self):
 
         """ 申请钢票贷"""
-        common_public_Gang().login_succesd(self.driver,'','login')
+        common_public_Gang().login_succesd(self.driver)
         #点击申请钢票贷
-        index_pj = IndexPageObject(self.driver,'index')
+        index_pj = IndexPageObject(self.driver)
         index_pj.click_apply_ticket()
         index_pj.is_apply_ticket_successd()
 
     def test_into_mycenter(self):
 
         """进入个人中心测试"""
-        common_public_Gang().login_succesd(self.driver,'','login')
-        index_pj = IndexPageObject(self.driver,'index')
+        common_public_Gang().login_succesd(self.driver)
+        index_pj = IndexPageObject(self.driver)
         index_pj.click_into_my_center()
         index_pj.is_into_mycenter_succesd()
+
+    def test_gang_newsflash(self):
+
+        """钢钢快报"""
+        #进入首页
+        common_public_Gang().login_succesd(self.driver)
+        #点击快报链接
+        index_pj = IndexPageObject(self.driver)
+        index_pj.click_and_verfity_newflashes()
+        #验证是否成功进入该页面
+
+
 
 if __name__ == "__main__":
     unittest.main()

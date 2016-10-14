@@ -1,5 +1,6 @@
 #-*- coding:utf-8 -*-
 from login import loginPageObject
+from index import  IndexPageObject
 from until.Constant import Constant
 class common_public_Gang(object):
     """
@@ -13,9 +14,17 @@ class common_public_Gang(object):
     def get_account(self):
         return Constant().Read_file_config('accout')
 
-
-    def login_succesd(self,driver,base_url,module):
-        p = loginPageObject(driver, base_url, module)
+    #企业用户成功登录
+    def login_succesd(self,driver):
+        p = loginPageObject(driver,'','login')
         p.login_company_ganggang(self.login_user,self.password)
         text = p.get_logout_value()
         p.is_success_logined(text)
+
+    #进入个人中心
+    def go_to_mycenter(self,driver):
+        self.login_succesd(driver)
+        index_pj=IndexPageObject(driver)
+        index_pj.click_into_my_center()
+        index_pj.is_into_mycenter_succesd()
+
