@@ -11,5 +11,6 @@ def browser():
 if __name__ =="__main__":
     dr =browser()
     dr.get("http://www.ggang.cn")
-    print dr.page_source.contains("操作指南")
+    element=dr.find_element_by_id('login')
+    dr.current_url
     dr.quit()
