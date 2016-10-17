@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 from .base import GG_BasePage
+from until.Constant import Constant
 class IndexPageObject(GG_BasePage):
     def __init__(self,driver):
         self.driver=driver
@@ -20,6 +21,8 @@ class IndexPageObject(GG_BasePage):
         find_type,value = self.get_type_locator(self.ticket)
         self.wait_until_element(self.driver,self.according_type_switch_method(find_type,value)).click()
 
+    #鼠标移动到
+
     # 点击我的钢钢网
     def click_into_my_center(self):
         find_type,value=self.get_type_locator(self.mycenter)
@@ -32,13 +35,12 @@ class IndexPageObject(GG_BasePage):
             find_type,value =self.get_type_locator(link)
             link_element=self.wait_until_element(self.driver,self.according_type_switch_method(find_type,value))
             # 点击并获取其属性href
-            link_href=link_element.get_attribute('href')
+            #link_href=link_element.get_attribute('href')
             link_text=link_element.text
-            print link_href,link_text
-            self.is_goto_newPage(link_href,link_text)
+            #点击链接
+            link_element.click()
+            self.is_goto_newPage(link_text)
 
-        #关闭窗口
-        #回到主窗口
 
     #封装验证是否成功跳入四方现货页面
     def is_spod_successd(self):
@@ -58,17 +60,14 @@ class IndexPageObject(GG_BasePage):
         self.switch_window()
         title = self.driver.title
         assert  title.encode("utf-8").startswith('钢钢网-会员中心')
+
     #封装验证链接是否进入的相应的页面
-    def is_goto_newPage(self,href_link,text):
-        #1.当前URL与调转地址相同
-        #2.title 包含文字内容
-        self.switch_window()
-        print self.driver.title
-        """
+    def is_goto_newPage(self,text):
+        #1. title 包含文字内容
+        #2. 关闭链接窗口，切换到主窗口
+        main_window=self.switch_window()
         title= self.driver.title
-        url= self.driver.current_url
-        print title,url
-        assert title.startswith(text)
-        self.driver.close()
-        """
+        if Constant().contain_str(title.encode("utf-8"),text.encode("utf-8"))==0:
+            self.driver.close()
+            self.switch_main_window(main_window)
 

@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import ConfigParser
 import os
+import  string
 
 """
 常用的方法
@@ -29,7 +30,13 @@ class Constant(object):
         value =list[1]
         return spetator,value
 
+    def contain_str(self,str1,str2):
+        return string.find(str1,str2)
+
 if __name__ =="__main__":
     item=Constant().Read_file_init('index')
     for i in range(1,6):
         print item.get("index_newfishs"+str(i))
+    str="传统融资遇困境，大象钢票“吉象三保”解"
+    str1="传统融资遇困境，大象钢票“吉象三保”解困难"
+    print Constant().contain_str(str1,str)

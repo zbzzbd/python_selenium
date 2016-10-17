@@ -5,6 +5,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import  expected_conditions as EC
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 from until.Constant import *
 class GG_BasePage(object):
@@ -37,6 +38,7 @@ class GG_BasePage(object):
     def switch_window(self):
         current_window=self.get_current_window()
         all_handles=self.get_all_handles()
+        print all_handles
         for handle in all_handles:
             if handle !=current_window:
                 self.driver.switch_to.window(handle)
@@ -80,3 +82,6 @@ class GG_BasePage(object):
 
     def accept_alert(self):
         self.driver.switch_to_alert().accept()
+
+    def mouse_on_element(self,element):
+        ActionChains(self.driver).move_to_element(element)
