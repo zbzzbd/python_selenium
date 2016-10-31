@@ -11,6 +11,8 @@ def browser():
 if __name__ =="__main__":
     dr =browser()
     dr.get("http://www.ggang.cn")
-    element=dr.find_element_by_id('login')
-    dr.current_url
+    str1= dr.page_source
+    if isinstance(str1,unicode):
+        str2=str1.encode("utf-8")
+        print str2.find("我的")
     dr.quit()
