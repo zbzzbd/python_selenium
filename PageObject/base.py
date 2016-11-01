@@ -37,6 +37,7 @@ class GG_BasePage(object):
 
     def switch_window(self):
         current_window=self.get_current_window()
+        self.driver.implicitly_wait(10)
         all_handles=self.get_all_handles()
         print all_handles
         for handle in all_handles:
@@ -84,4 +85,19 @@ class GG_BasePage(object):
         self.driver.switch_to_alert().accept()
 
     def mouse_on_element(self,element):
-        ActionChains(self.driver).move_to_element(element)
+        ActionChains(self.driver).move_to_element(element).perform()
+
+
+    def get_cookiesValue_by_name(self,driver,name):
+        return driver.get_cookies()
+
+    def page_should_be_contain_text(self,str1):
+        print str1
+        page=self.driver.page_source
+        flage=None
+        if isinstance(page,unicode):
+            str2=page.encode("utf-8")
+            flage= True if str2.find(str1)>=0 else None
+            return  flage
+        return flage
+

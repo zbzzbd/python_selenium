@@ -33,10 +33,23 @@ class Constant(object):
     def contain_str(self,str1,str2):
         return string.find(str1,str2)
 
+    def get_all_table_element_xpath(self,item,key,table_xpath_locator=None):
+        table_xpath_locator=item.get(key)
+        xpath=[]
+        for i in range(1,7):
+            for j in range(1,7):
+                msg=table_xpath_locator+"tr["+str(i)+"]/td["+str(j)+"]"
+                xpath.append(msg)
+        return  xpath
+
+
+
+
 if __name__ =="__main__":
     item=Constant().Read_file_init('index')
     for i in range(1,6):
         print item.get("index_newfishs"+str(i))
-    str="传统融资遇困境，大象钢票“吉象三保”解"
+    str3="传统融资遇困境，大象钢票“吉象三保”解"
     str1="传统融资遇困境，大象钢票“吉象三保”解困难"
-    print Constant().contain_str(str1,str)
+    print Constant().contain_str(str1,str3)
+    print Constant().get_all_table_element_xpath(item,'index_steel_recommd_link_table')
