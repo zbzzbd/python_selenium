@@ -62,16 +62,16 @@ class GG_BasePage(object):
         if str == 'id':
             return driver.find_element_by_id(value)
 
-    def according_type_switch_method(self,str,value):
-        if str =='id':
+    def according_type_switch_method(self,find_type,value):
+        if find_type =='id':
             return (By.ID,value)
-        if str =='xpath':
+        if find_type =='xpath':
             return (By.XPATH,value)
-        if str == 'css':
+        if find_type == 'css':
             return (By.CLASS_NAME,value)
-        if str == 'name':
+        if find_type == 'name':
             return (By.NAME,value)
-        if str == 'link_text':
+        if find_type == 'link_text':
             return (By.LINK_TEXT,value)
 
     #def find_element(self,*locator):
@@ -79,6 +79,8 @@ class GG_BasePage(object):
 
     def wait_until_element(self,driver,locator):
         element= WebDriverWait(driver,60,0.5).until(EC.presence_of_element_located(locator))
+        if element is None:
+            raise AssertionError("timeout in 60s can not find")
         return element
 
     def accept_alert(self):
@@ -91,13 +93,20 @@ class GG_BasePage(object):
     def get_cookiesValue_by_name(self,driver,name):
         return driver.get_cookies()
 
-    def page_should_be_contain_text(self,str1):
-        print str1
+    #判断是否包含某段文字
+    def page_should_be_contain_text(self,text):
         page=self.driver.page_source
         flage=None
         if isinstance(page,unicode):
             str2=page.encode("utf-8")
-            flage= True if str2.find(str1)>=0 else None
+            flage= True if str2.find(text)>=0 else None
             return  flage
         return flage
+
+    def find_element_by_locator(self, locator):
+        find_type, value = self.get_type_locator(locator)
+        element = self.wait_until_element(self.driver, self.according_type_switch_method(find_type, value))
+        if element is None:
+            raise AssertionError("未成功找到元素")
+        return element
 
