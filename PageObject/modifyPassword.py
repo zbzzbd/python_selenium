@@ -12,28 +12,40 @@ class  ModifyPasswordPageObjdect(GG_BasePage):
         self.password_link=item.get('modify_password_link')
         self.old_password =item.get('modify_old_password')
         self.new_password = item.get('modify_new_password')
-        self.confirm
+        self.confirm_password= item.get('modify_confirm_password')
+        self.submit_button = item.get('modify_submit')
+        self.canel_button = item.get('modify_canel')
+
     #点击修改密码链接
     def click_modify_password_link(self):
-        find_type,value= self.get_type_locator(self.password_link)
-        self.wait_until_element(self.driver,self.according_type_switch_method(find_type,value)).click()
+        self._click_element(self.password_link)
 
     #输入原密码
     def input_old_password(self,oldpassword):
-         self.input_text(self.old_password,oldpassword)
+         self._input_text(self.old_password,oldpassword)
 
     #输入新密码
     def input_new_password(self,newpassword):
-        self.input_text(self.new_password,newpassword)
+        self._input_text(self.new_password,newpassword)
 
     def input_confirm_new_password(self,confirmpassword):
 
-        self.input_text(self.)
+        self._input_text(self.confirm_password,confirmpassword)
 
-    def input_text(self,locator,text):
-        element= self.find_element_by_locator(locator)
-        element.clear()
-        element.senkeys(text)
+    #点击确认按钮
+    def click_submit_button(self):
+        self._click_element(self.submit_button)
+
+    #点击取消按钮
+    def click_cancel_button(self):
+         self._click_element(self.canel_button)
+
+    #修改密码
+    def modify_password(self,oldpassword,newpassword,confirmpassword):
+
+        self.input_old_password(oldpassword)
+        self.input_new_password(newpassword)
+        self.input_confirm_new_password(confirmpassword)
 
 
 

@@ -32,9 +32,11 @@ class GG_BasePage(object):
     def get_current_window(self):
         return self.driver.current_window_handle
 
+
     def get_all_handles(self):
         return self.driver.window_handles
 
+    #切换窗口
     def switch_window(self):
         current_window=self.get_current_window()
         self.driver.implicitly_wait(10)
@@ -45,6 +47,8 @@ class GG_BasePage(object):
                 self.driver.switch_to.window(handle)
                 print self.driver.title
         return current_window
+
+    #却换到主窗口
     def switch_main_window(self,main_window):
         self.driver.switch_to.window(main_window)
 
@@ -74,9 +78,7 @@ class GG_BasePage(object):
         if find_type == 'link_text':
             return (By.LINK_TEXT,value)
 
-    #def find_element(self,*locator):
-    #    return self.driver.find_element(*locator)
-
+    #封装元素的等待时间为60秒，如果超过60秒则进行抛出异常
     def wait_until_element(self,driver,locator):
         element= WebDriverWait(driver,60,0.5).until(EC.presence_of_element_located(locator))
         if element is None:
@@ -103,6 +105,7 @@ class GG_BasePage(object):
             return  flage
         return flage
 
+    #封装根据传入的locatr,进行查找相关元素，并进行返回
     def find_element_by_locator(self, locator):
         find_type, value = self.get_type_locator(locator)
         element = self.wait_until_element(self.driver, self.according_type_switch_method(find_type, value))
@@ -110,3 +113,17 @@ class GG_BasePage(object):
             raise AssertionError("未成功找到元素")
         return element
 
+    #封装方法，此方法专门用来定位元素，并进行点击元素进行使用
+    def _click_element(self, locator):
+        element = self.find_element_by_locator(locator)
+        if element is None:
+            raise ValueError("元素未找到")
+        element.click()
+
+    #封装方法，此方法专门在输入文本框进行使用
+    def _input_text(self, locator, text):
+        element = self.find_element_by_locator(locator)
+        if element is None:
+            raise ValueError("未成功定位到此元素")
+        element.clear()
+        element.send_keys(text)
