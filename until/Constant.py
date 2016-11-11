@@ -30,11 +30,13 @@ class Constant(object):
         return dict(config.items(item))
 
 
-    def pase_element_find_method(self,str):
-        list=str.split('>')
-        spetator=list[0]
-        value =list[1]
-        return spetator,value
+    def pase_element_find_method(self,str_locator):
+
+        if str_locator is not None and len(str_locator)>0:
+            list=str_locator.split('>')
+            spetator=list[0]
+            value =list[1]
+            return spetator,value
 
     def contain_str(self,str1,str2):
         return string.find(str1,str2)
@@ -64,7 +66,10 @@ class Constant(object):
         print arr
 
 
-
+    def locaotor_value_join(self, locator, *value_sex):
+        value='//input[@name="Gender" and %s]'
+        value_used = value % value_sex
+        return value_used
 if __name__ =="__main__":
     """item=Constant().Read_file_init('index')
     for i in range(1,6):
@@ -75,3 +80,4 @@ if __name__ =="__main__":
     print Constant().get_all_table_element_xpath(item,'index_steel_recommd_link_table')
     """
     print Constant().Read_excel("修改密码")
+    print Constant().locaotor_value_join('男')
