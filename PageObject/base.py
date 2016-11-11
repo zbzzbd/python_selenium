@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import  expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import  NoSuchWindowException
 
 from until.Constant import *
 class GG_BasePage(object):
@@ -50,12 +51,14 @@ class GG_BasePage(object):
 
     #却换到主窗口
     def switch_main_window(self,main_window):
-        self.driver.switch_to.window(main_window)
-
-
+        try:
+            if main_window:
+                self.driver.switch_to.window(main_window)
+        except NoSuchWindowException:
+            print  "此窗口不存在"
 
     def get_type_locator(self, str):
-        find_type, value = Constant().pase_element_find_method(str)
+        find_type,value = Constant().pase_element_find_method(str)
         return find_type,value
 
     def according_type_find_element(self, driver, str, value):
@@ -126,4 +129,13 @@ class GG_BasePage(object):
         if element is None:
             raise ValueError("未成功定位到此元素")
         element.clear()
-        element.send_keys(text)
+        if not isinstance(text,unicode):
+            element.send_keys(text.decode('utf-8'))
+        else:
+            element.send_keys(text)
+
+    # 单个字符定位拼接并返回
+    def _locaotor_value_join(self, locator, value_sex):
+        find_type, value = self.get_type_locator(locator)
+        value_used = value % value_sex
+        return find_type,value_used
